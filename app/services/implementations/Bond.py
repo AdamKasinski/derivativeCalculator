@@ -21,35 +21,34 @@ class Bond(IBond):
     def notional(self) -> float:
         return self._notional
 
-#    @property
-#    def start_date(self) -> date:
-#        return self._start_date
-#
-#    @property
-#    def end_date(self) -> date:
-#        return self._end_date
-#
-#    @property
-#    def leg(self) -> str:
-#        return self._leg
-#
-#    @property
-#    def interest_rate(self) -> float:
-#        return self._interest_rate
-#
-#    @property
-#    def margin(self) -> float:
-#        return self._margin
-#
-#    @property
-#    def frequency(self) -> str:
-#        return self._frequency
-#
-#    @property
-#    def type(self) -> str:
-#        return self._type
-#
-#    @property
-#    def float_leg_curve(self):
-#        return self._float_leg_curve
-#
+    @property
+    def start_date(self) -> date:
+        return self._start_date
+
+    @property
+    def end_date(self) -> date:
+        return self._end_date
+
+    @property
+    def leg(self) -> str:
+        return self._leg
+
+    @property
+    def interest_rate(self) -> float:
+        return self._interest_rate
+
+    @property
+    def margin(self) -> float:
+        return self._margin
+
+    @property
+    def frequency(self) -> str:
+        return self._frequency
+
+    @property
+    def type(self) -> str:
+        return self._type
+
+    @property
+    def float_leg_curve(self):
+        return self._float_leg_curve
