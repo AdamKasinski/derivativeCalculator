@@ -84,7 +84,7 @@ celerybeat.pid
 
 *.sage.py
 
-
+derCalc/
 .env
 .venv
 env/
