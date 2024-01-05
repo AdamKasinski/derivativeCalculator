@@ -1,9 +1,12 @@
+import pandas as pd
+import numpy as np
+
 from datetime import date
 from services.interfaces.Ibond import IBond
 
 
-class Bond(IBond):
-    def __init__(self, notional, start_date, end_date, leg, interest_rate, margin, frequency, type, float_leg_curve):
+class FVBond(IBond):
+    def __init__(self, notional, start_date, end_date, leg, interest_rate, margin, frequency, type, float_leg_curve,schedule):
         self._notional = notional
         self._start_date = start_date
         self._end_date = end_date
@@ -13,9 +16,25 @@ class Bond(IBond):
         self._frequency = frequency
         self._type = type
         self._float_leg_curve = float_leg_curve
+        self._schedule = schedule
 
-    def valuate(self, valuation_date: date) -> float:
+
+    def generate_schedule(self, valuation_date):
         return 2+2
+    
+    def generate_cashflow(self, valuation_date):
+        return 2+2
+
+    def valuate(self, valuation_date) -> float:
+        return 2+2
+
+    @property
+    def schedule(self):
+        return self._schedule
+
+    @schedule.setter
+    def schedule(self, schedule):
+        self._schedule = schedule
 
     @property
     def notional(self) -> float:
