@@ -26,7 +26,7 @@ class Curve(ICurve):
         if method == 'linear':
             full_series = full_series.interpolate()
         
-        if method == 'logarythmic':
+        elif method == 'logarythmic':
             for date, value in full_series.iteritems():
                 if pd.isna(value):
                     db, da, vb, va = self.__find_nearest_dates_values(full_series, date)
