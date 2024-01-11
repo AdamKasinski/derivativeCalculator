@@ -4,9 +4,9 @@ from Icurve import ICurve
 class IProjectionCurve(ICurve):
 
     @abstractmethod
-    def generate_forward_rates(start_date,end_date):
+    def generate_forward_rates(self):
         pass
     
     @abstractmethod
-    def generate_discount_factors(start_date,end_date):
+    def generate_discount_factors(self):
         pass

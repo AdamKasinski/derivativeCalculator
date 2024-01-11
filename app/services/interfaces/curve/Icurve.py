@@ -3,6 +3,10 @@ from abc import ABC, abstractmethod
 class ICurve(ABC):
     
     @abstractmethod
-    def interpolate_curve(start_date,end_date):
+    def get_data(self):
+        pass
+    
+    @abstractmethod
+    def interpolate_curve(self):
         pass
     

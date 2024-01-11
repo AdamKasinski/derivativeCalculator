@@ -3,8 +3,8 @@ from app.services.implementations.curve.historical_curve import Curve
 
 class Projection_curve(Curve, IProjection_curve):
     
-    def __init__(self, curve_name, start_date, end_date):
-        super().__init__(curve_name,start_date,end_date)
+    def __init__(self, curve_name, start_date, end_date, core):
+        super().__init__(self,curve_name,start_date,end_date, core)
 
     def generate_forward_rates(self):
         pass
