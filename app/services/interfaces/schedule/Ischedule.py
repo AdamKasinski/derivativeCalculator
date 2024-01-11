@@ -10,3 +10,7 @@ class ISchedule(ABC):
     @abstractmethod
     def schedule(self):
         pass
+
+    @schedule.setter
+    def schedule(self, valuation_date):
+        pass
