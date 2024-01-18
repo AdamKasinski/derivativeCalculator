@@ -36,10 +36,14 @@ class FVBond_pricing(IBond_pricing):
     def __generate_fixed(self):
         return self.interest_rate
 
-    def __generate_float(self): #TODO: filter only relevant values end add first value
-        return self._projection_curve._forward_rates.where(
+    def __generate_float(self):
+        forward_rates =  self._projection_curve._forward_rates.where(
             self._projection_curve._curve['dates'] == self._bond.schedule['start_dates']
         )
+        curr_interest_rate = self._historical_curve.curve['values'].where(
+            self._historical_curve._curve['dates'] == self._bond.schedule['start_dates']
+        )
+        return np.insert(forward_rates,0,curr_interest_rate)
 
     def __init_cashflows(self):
         cfs = copy.deepcopy(self._bond.schedule)
