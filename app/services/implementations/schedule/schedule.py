@@ -12,12 +12,14 @@ class Schedule(ISchedule):
 
     
     def generate_schedule(self, valuation_date):
-        full_schedule  = pd.date_range(self._start_date,self._end_date,freq=pd.DateOffset(months=self._frequency))
+        full_schedule  = pd.date_range(self._start_date,self._end_date,
+                                       freq=pd.DateOffset(months=self._frequency))
         current_start_date = full_schedule[full_schedule<valuation_date][-1]
         index = np.where(full_schedule == current_start_date)[0][0]
         start_dates = full_schedule[index:-1]
         end_dates = full_schedule[index+1:]
-        self._schedule = start_dates, end_dates
+        self._schedule['start_dates'] = start_dates 
+        self._schedule['end_dates'] = end_dates
 
     @property
     def schedule(self):

@@ -1,16 +1,6 @@
 from abc import ABC, abstractmethod, abstractproperty
 
 class IBond(ABC):
-    
-    @property
-    @abstractmethod
-    def generate_cashflows(self, valuation_date,schedule):
-        pass
-
-    @property
-    @abstractmethod
-    def valuate(self, valuation_date):
-        pass
 
     @property
     @abstractmethod
