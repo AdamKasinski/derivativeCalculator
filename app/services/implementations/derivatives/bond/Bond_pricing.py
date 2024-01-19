@@ -24,6 +24,7 @@ class FVBond_pricing(IBond_pricing):
         
     def generate_cashflows(self):
         self._cashflows['interest rate'] = self._generate_interest_rate[self._interest_rate]()
+        self._cashflows['yearfracs'] = self.__generate_yearfracs()
         self._cashflows['cashflows'] = self.__calculate_cashflow()
         self._cashflows['discount factor'] = self.__get_discount_factors()
         self._cashflows['discounted cashflows'] = self.__discount_cashflows()
@@ -34,7 +35,7 @@ class FVBond_pricing(IBond_pricing):
     
     
     def __generate_fixed(self):
-        return self.interest_rate
+        return self._bond.interest_rate
 
     def __generate_float(self):
         forward_rates =  self._projection_curve._forward_rates.where(
@@ -48,16 +49,20 @@ class FVBond_pricing(IBond_pricing):
     def __init_cashflows(self):
         cfs = copy.deepcopy(self._bond.schedule)
         cfs['interest rate'] = []
+        cfs['yearfracs'] = []
         cfs['cashflows'] = []
         cfs['discount factor'] = []
         cfs['discounted cashflows'] = []
         return pd.DataFrame(cfs)
 
-    def __calculate_cashflow():
+    def __calculate_cashflow(self):
+        return self._bond.notional*self._cfs['interest rate']*self._yearfracs
+    
+    def __get_discount_factors(self):
         pass
     
-    def __get_discount_factors():
+    def __discount_cashflows(self):
         pass
     
-    def __discount_cashflows():
-        pass
+    def __generate_yearfracs(self):
+        self._bond.schedule.schedule

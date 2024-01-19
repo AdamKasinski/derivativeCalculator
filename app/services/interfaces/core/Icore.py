@@ -2,6 +2,10 @@ from abc import ABC, abstractmethod
 
 class ICore(ABC):
     
+    @abstractmethod    
+    def generate_date_range(start,end,freq):
+        pass
+    
     @abstractmethod
     def yearfrac(earlier_date, later_date):
         pass

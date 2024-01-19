@@ -1,11 +1,32 @@
 import numpy as np
+from dateutil import relativedelta
 from services.interfaces.core.Icore import ICore
 
 class Core(ICore):
 
     @staticmethod
+    def generate_date_range(start,end,freq):
+        dates = []
+        curr = start
+        while curr < end:
+            dates.append(curr)
+            curr += relativedelta(months=freq)    
+        if curr == end:
+            dates.append(end)
+        else:
+            end_to_next_len = ICore.yearfrac(end,curr)
+            end_to_last_len = ICore.yearfrac(end,dates[-1])
+            
+            if end_to_next_len < end_to_last_len:
+                dates.append(end)
+            else:
+                dates[-1] = end
+    
+        return dates
+    
+    @staticmethod
     def yearfrac(earlier_date, later_date):
-        return (later_date-earlier_date).astype(int)/365
+        return (later_date-earlier_date).days/365
 
     @staticmethod
     def logarithmic_interpolation(on_date,date_before,date_after,value_before,value_after):
@@ -25,6 +46,6 @@ class Core(ICore):
         return (1+value_before)**t1/(1+value_after)**t2-1
     
     @staticmethod    
-    def calculate_discount_factor(yearfrac,interest_rate):
-        return 1/(1+interest_rate)**yearfrac
+    def calculate_discount_factor(yearfrac,discount_rate):
+        return 1/(1+discount_rate)**yearfrac
     
