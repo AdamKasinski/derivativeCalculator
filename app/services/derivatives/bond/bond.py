@@ -1,8 +1,7 @@
 
 from datetime import date
-from app.services.interfaces.derivatives.bond.Ibond import IBond
 
-class FVBond(IBond):
+class FVBond():
 
     def __init__(self, notional, start_date, end_date, leg, interest_rate, 
                  margin, frequency, type, float_leg_curve,schedule):

@@ -1,18 +1,16 @@
 import numpy as np
 import pandas as pd
-from app.services.interfaces.curve.Icurve import ICurve
-from app.services.interfaces.core.Icore import ICore
+from app.services.core.core import Core
 
 
-class Curve(ICurve):
+class Curve():
     
-    def __init__(self,curve_name,start_date,end_date, core):
+    def __init__(self,curve_name,start_date,end_date):
         self._curve_name = curve_name
         self._start_date = start_date
         self._end_date = end_date
         self._curve = self.get_data()
-        self._core = core
-        self._yearfrac = core.yearfrac(self._start_date,self._end_date)
+        self._yearfrac = Core.yearfrac(self._start_date,self._end_date)
     
     def get_data(self):
         pass

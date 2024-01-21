@@ -2,14 +2,12 @@ import copy
 import pandas as pd
 import numpy as np
 from datetime import date
-from app.services.interfaces.derivatives.bond.Ibond import IBond
-from app.services.interfaces.core.Icore import Icore
-from app.services.interfaces.curve.Icurve import Icurve
-from app.services.interfaces.curve.Iprojection_curve import Iprojection_curve
-from app.services.interfaces.derivatives.bond.Ibond_pricing import IBond_pricing
+from app.services.core.core import Core
+from app.services.curve.curve import Curve
+from app.services.curve.projection_curve import Projection_curve
 
 
-class FVBond_pricing(IBond_pricing):
+class FVBond_pricing():
     
     def __init__(self,bond,historical_curve,projection_curve,valuation_date):
         self._valuation_date = valuation_date
@@ -65,4 +63,5 @@ class FVBond_pricing(IBond_pricing):
         pass
     
     def __generate_yearfracs(self):
-        self._bond.schedule.schedule
+        return Core.yearfrac(self._bond.schedule.schedule['start date'],
+                              self._bond.schedule.schedule['end date'])

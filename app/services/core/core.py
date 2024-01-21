@@ -1,8 +1,7 @@
 import numpy as np
-from dateutil import relativedelta
-from services.interfaces.core.Icore import ICore
+from dateutil.relativedelta import relativedelta
 
-class Core(ICore):
+class Core():
 
     @staticmethod
     def generate_date_range(start,end,freq):
@@ -14,15 +13,15 @@ class Core(ICore):
         if curr == end:
             dates.append(end)
         else:
-            end_to_next_len = ICore.yearfrac(end,curr)
-            end_to_last_len = ICore.yearfrac(end,dates[-1])
+            end_to_next_len = Core.yearfrac(end,curr)
+            end_to_last_len = Core.yearfrac(end,dates[-1])
             
             if end_to_next_len < end_to_last_len:
                 dates.append(end)
             else:
                 dates[-1] = end
     
-        return dates
+        return np.array(dates)
     
     @staticmethod
     def yearfrac(earlier_date, later_date):
