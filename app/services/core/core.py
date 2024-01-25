@@ -44,7 +44,9 @@ class Core():
         t2 = Core.yearfrac(valuation_date,date_after)
         return (1+value_before)**t1/(1+value_after)**t2-1
     
-    @staticmethod    
-    def calculate_discount_factor(yearfrac,discount_rate):
+    @staticmethod    #TODO: add continous discounting
+    def calculate_discount_factor(yearfrac,discount_rate, type):
+        if type == 'continous':
+            return np.exp(-discount_rate*yearfrac)
         return 1/(1+discount_rate)**yearfrac
     
